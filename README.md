@@ -14,7 +14,7 @@ Used for selecting a date and time.
 | dateFormatId | DateFormat | ✓ | Format in which the date should be displayed / edited. Valid options include: `european` or `friendly` or `local` or `us` |
 | includeTime | Boolean | ✓ | Enables displaying / editing the time |
 | sameTimeZone | Boolean | ✓ | Disabling this option will format the date to the local time. Enabling it will display the time the same (in UTC) regardless of the locale of the user. |
-| timeFormatId | TimeFormat | ✓ | Disabling this option will format the date to the local time. Enabling it will display the time the same (in UTC) regardless of the locale of the user. Valid options include: `12` or `24` |
+| timeFormatId | TimeFormat | ✓ | Display time in 12 or 24 hour notation. Enabling it will display the time the same (in UTC) regardless of the locale of the user. Valid options include: `12` or `24` |
 | date | String |  | Date string in simplified extended ISO format (ISO 8601). Example: `2018-11-15T09:28:04.300Z` |
 | onChange | Function |  | Callback invoked whenever the date get's changed. : `({id: string, date: string}): void` |
 
