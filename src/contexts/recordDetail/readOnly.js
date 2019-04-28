@@ -9,7 +9,6 @@ export default class SingleLineTextField extends React.Component {
         return (
             <div
                 className={css`
-                    font-size: 13px;
                     padding: 0;
                     margin: 0;
                     color: #111111;
