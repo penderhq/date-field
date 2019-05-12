@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {render} from 'react-dom'
 import {css, injectGlobal} from 'emotion'
 import DateField from '../../src'
-import {Canvas, Heading, Paragraph, Box} from '@cmds/demo-utils'
+import {Canvas, Heading, Paragraph, Box} from '@pndr/demo-utils'
 
 injectGlobal`
     * {
@@ -30,6 +30,17 @@ class Demo extends Component {
             <Heading>
                 Record Detail Context
             </Heading>
+            <Paragraph>Empty and editor role</Paragraph>
+            <Box>
+                <DateField
+                    id={'fld1'}
+                    contextId={'recordDetail'}
+                    roleId={'editor'}
+                    dateFormat={DATE_FORMAT_A}
+                    timeFormat={TIME_FORMAT_A}
+                    includeTime={true}
+                />
+            </Box>
             <Paragraph>With time and editor role</Paragraph>
             <Box>
                 <DateField
@@ -55,6 +66,18 @@ class Demo extends Component {
                     timeFormat={TIME_FORMAT_A}
                     includeTime={true}
                     date={this.state.date}
+                />
+            </Box>
+            <Paragraph>Empty and read only role</Paragraph>
+            <Box>
+                <DateField
+                    id={'fld1'}
+                    contextId={'recordDetail'}
+                    roleId={'readOnly'}
+                    dateFormat={DATE_FORMAT_A}
+                    timeFormat={TIME_FORMAT_A}
+                    includeTime={true}
+                    date={null}
                 />
             </Box>
             <Paragraph>Without time and editor role</Paragraph>

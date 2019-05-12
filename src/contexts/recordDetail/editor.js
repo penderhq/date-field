@@ -1,6 +1,6 @@
 import React from 'react'
 import {css, cx} from 'emotion'
-import DateInput from '@cmds/date-input'
+import DateInput from '@pndr/date-input'
 
 export default class DateField extends React.Component {
 

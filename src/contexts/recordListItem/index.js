@@ -17,8 +17,6 @@ export default class SingleLineTextField extends React.Component {
                     display: inline-flex;
                     overflow: hidden;
                     align-items: center;
-                    line-height: 1.5;
-                    font-size: 13px;
                 `}
             >
                 <div
