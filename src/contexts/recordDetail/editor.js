@@ -18,7 +18,7 @@ export default class DateField extends React.Component {
     -webkit-transition: background-color .15s ease-in-out;
     appearance: none;
     background-color: #fff;
-    border: 1px solid transparent;
+    border: none;
     border-radius: 3px;
     color: #191919;
     display: block;
@@ -64,11 +64,10 @@ export default class DateField extends React.Component {
                     css`
                         -moz-appearance: none;
                         -webkit-appearance: none;
-                        -webkit-transition: border-color .15s ease-in-out;
                         appearance: none;
                         background-color: #fff;
-                        border: 1px solid #d9d9d9;
-                        border-radius: 3px;
+                        box-shadow: rgba(0, 0, 0, 0.09) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 1px 0px 0px, rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
+                        border-radius: 6px;
                         color: #191919;
                         display: flex;
                         align-items: center;
@@ -81,9 +80,9 @@ export default class DateField extends React.Component {
                         max-width: 100%;
                     `, this.state.focus ? css`
                           -webkit-transition-duration: 0s;
-                            border-color: #07f;
                             outline: 0;
                             transition-duration: 0s;
+                            box-shadow: rgb(0, 34, 253) 0px 0px 0px 2px inset, rgba(0, 0, 0, 0.1) 0px 2px 4px, rgba(0, 0, 0, 0.1) 0px 0px 1px;
                     ` : null
                 )}
             >
