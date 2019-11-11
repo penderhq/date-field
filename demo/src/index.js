@@ -1,12 +1,17 @@
-import React, {Component} from 'react'
-import {render} from 'react-dom'
-import {css, injectGlobal} from 'emotion'
+import React, { Component } from 'react'
+import { render } from 'react-dom'
+import { css, injectGlobal } from 'emotion'
 import DateField from '../../src'
-import {Canvas, Heading, Paragraph, Box} from '@pndr/demo-utils'
+import { Canvas, Heading, Paragraph, Box } from '@pndr/demo-utils'
+import moment from 'moment'
+import 'moment/locale/nl'
 
 injectGlobal`
     * {
         box-sizing: border-box;
+    }
+    *:focus {
+        outline: none;
     }
     body {
         font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
@@ -22,7 +27,14 @@ const DATE_FORMAT_B = 'LL'
 class Demo extends Component {
 
     state = {
+        date2: null,
         date: new Date().toISOString()
+    }
+
+    componentDidMount() {
+
+        const head = document.head.querySelector('[name=viewport]')
+        head.content = "width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=0"
     }
 
     render() {
@@ -34,25 +46,31 @@ class Demo extends Component {
             <Box>
                 <DateField
                     id={'fld1'}
+                    locale={'nl'}
                     contextId={'recordDetail'}
                     roleId={'editor'}
                     dateFormat={DATE_FORMAT_A}
                     timeFormat={TIME_FORMAT_A}
                     includeTime={true}
+                    date={this.state.date2}
+                    onChange={({ id, date }) => {
+                        this.setState({ date2: date })
+                    }}
                 />
             </Box>
             <Paragraph>With time and editor role</Paragraph>
             <Box>
                 <DateField
                     id={'fld1'}
+                    locale={'nl'}
                     contextId={'recordDetail'}
                     roleId={'editor'}
                     dateFormat={DATE_FORMAT_A}
                     timeFormat={TIME_FORMAT_A}
                     includeTime={true}
                     date={this.state.date}
-                    onChange={({id, date}) => {
-                        this.setState({date})
+                    onChange={({ id, date }) => {
+                        this.setState({ date })
                     }}
                 />
             </Box>
@@ -60,6 +78,7 @@ class Demo extends Component {
             <Box>
                 <DateField
                     id={'fld1'}
+                    locale={'nl'}
                     contextId={'recordDetail'}
                     roleId={'readOnly'}
                     dateFormat={DATE_FORMAT_A}
@@ -72,6 +91,7 @@ class Demo extends Component {
             <Box>
                 <DateField
                     id={'fld1'}
+                    locale={'nl'}
                     contextId={'recordDetail'}
                     roleId={'readOnly'}
                     dateFormat={DATE_FORMAT_A}
@@ -84,14 +104,15 @@ class Demo extends Component {
             <Box>
                 <DateField
                     id={'fld1'}
+                    locale={'nl'}
                     contextId={'recordDetail'}
                     roleId={'editor'}
                     dateFormat={DATE_FORMAT_A}
                     timeFormat={TIME_FORMAT_A}
                     includeTime={false}
                     date={this.state.date}
-                    onChange={({id, date}) => {
-                        this.setState({date})
+                    onChange={({ id, date }) => {
+                        this.setState({ date })
                     }}
                 />
             </Box>
@@ -99,6 +120,7 @@ class Demo extends Component {
             <Box>
                 <DateField
                     id={'fld1'}
+                    locale={'nl'}
                     contextId={'recordDetail'}
                     roleId={'readOnly'}
                     dateFormat={DATE_FORMAT_A}
@@ -113,14 +135,15 @@ class Demo extends Component {
             <Box>
                 <DateField
                     id={'fld1'}
+                    locale={'nl'}
                     contextId={'recordDetail'}
                     roleId={'editor'}
                     dateFormat={DATE_FORMAT_B}
                     timeFormat={TIME_FORMAT_A}
                     includeTime={true}
                     date={this.state.date}
-                    onChange={({id, date}) => {
-                        this.setState({date})
+                    onChange={({ id, date }) => {
+                        this.setState({ date })
                     }}
                 />
             </Box>
@@ -130,6 +153,7 @@ class Demo extends Component {
             <Box>
                 <DateField
                     id={'fld1'}
+                    locale={'nl'}
                     contextId={'recordDetail'}
                     roleId={'readOnly'}
                     dateFormat={DATE_FORMAT_B}
@@ -147,6 +171,7 @@ class Demo extends Component {
             <Box>
                 <DateField
                     id={'fld1'}
+                    locale={'nl'}
                     contextId={'recordGalleryCard'}
                     roleId={'readOnly'}
                     dateFormat={DATE_FORMAT_A}
@@ -161,6 +186,7 @@ class Demo extends Component {
             <Box>
                 <DateField
                     id={'fld1'}
+                    locale={'nl'}
                     contextId={'recordGalleryCard'}
                     roleId={'readOnly'}
                     dateFormat={DATE_FORMAT_A}
@@ -175,6 +201,7 @@ class Demo extends Component {
             <Box>
                 <DateField
                     id={'fld1'}
+                    locale={'nl'}
                     contextId={'recordGalleryCard'}
                     roleId={'readOnly'}
                     dateFormat={DATE_FORMAT_B}
@@ -192,6 +219,7 @@ class Demo extends Component {
             <Box>
                 <DateField
                     id={'fld1'}
+                    locale={'nl'}
                     contextId={'recordListItem'}
                     roleId={'readOnly'}
                     dateFormat={DATE_FORMAT_A}
@@ -206,6 +234,7 @@ class Demo extends Component {
             <Box>
                 <DateField
                     id={'fld1'}
+                    locale={'nl'}
                     contextId={'recordListItem'}
                     roleId={'readOnly'}
                     dateFormat={DATE_FORMAT_A}
@@ -220,6 +249,7 @@ class Demo extends Component {
             <Box>
                 <DateField
                     id={'fld1'}
+                    locale={'nl'}
                     contextId={'recordListItem'}
                     roleId={'readOnly'}
                     dateFormat={DATE_FORMAT_B}
@@ -232,4 +262,4 @@ class Demo extends Component {
     }
 }
 
-render(<Demo/>, document.querySelector('#demo'))
+render(<Demo />, document.querySelector('#demo'))

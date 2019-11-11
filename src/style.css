@@ -1,0 +1,113 @@
+/* =============================================================================
+
+	react-day-picker.css.
+	Prefix everything with .DatePicker to increase the precedence of these rules
+	so they will always override the default CSS regardless of the order in which
+	they are concatenated.
+
+// ========================================================================== */
+
+/* =============================================================================
+	Desktop Styles.
+============================================================================= */
+
+.DatePicker .DayPicker-Day {
+    border-radius: 6px;
+}
+
+.DatePicker .DayPicker-Day.DayPicker-Day--range {
+    border-radius: 0;
+}
+
+.DatePicker .DayPicker-Day.DayPicker-Day--range.DayPicker-Day--start {
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+}
+
+.DatePicker .DayPicker-Day.DayPicker-Day--range.DayPicker-Day--end {
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+
+.DatePicker .DayPicker-Day.DayPicker-Day--range.DayPicker-Day--start.DayPicker-Day--end {
+    border-radius: 6px;
+}
+
+.DatePicker .DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside), .DatePicker .DayPicker-Day--value:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside) {
+    background: rgb(0, 34, 253);
+    color: #fff;
+}
+
+.DatePicker .DayPicker:not(.DayPicker--interactionDisabled) .DayPicker-Day--outside:hover, .DatePicker .DayPicker:not(.DayPicker--interactionDisabled) .DayPicker-Day:not(.DayPicker-Day--disabled):not(.DayPicker-Day--selected):not(.DayPicker-Day--value):not(.DayPicker-Day--start):not(.DayPicker-Day--end):hover {
+    background-color: rgba(0,119,255,.1);
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.DatePicker .DayPicker-Months {
+    font-size: 14px;
+}
+
+.DatePicker .DayPicker-Day--today:not(.DayPicker-Day--selected):not(.DayPicker-Day--value):not(.DayPicker-Day--start):not(.DayPicker-Day--end) {
+    position: relative;
+    color: white;
+    z-index: 1;
+}
+
+.DatePicker .DayPicker-Day--today {
+    color: inherit;
+}
+
+.DatePicker .DayPicker-Day--today:not(.DayPicker-Day--selected):not(.DayPicker-Day--value):not(.DayPicker-Day--start):not(.DayPicker-Day--end)::after {
+    content: "";
+    display: block;
+    width: 28px;
+    height: 28px;
+    background: rgb(253, 11, 130);
+    border-radius: 100%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    z-index: -1;
+}
+
+.DatePicker .DayPicker-Caption>div {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.DatePicker .DayPicker-Month {
+    margin: 0;
+}
+
+.DatePicker .DayPicker-wrapper {
+    padding-bottom: 0;
+}
+
+.DatePicker .DayPicker-Week, .DatePicker .DayPicker-WeekdaysRow {
+    display: flex;
+}
+
+.DatePicker .DayPicker-Weekdays {
+    display: block;
+    margin-top: 0;
+}
+
+.DatePicker .DayPicker-Caption {
+    margin-bottom: 8px;
+}
+
+.DatePicker .DayPicker-Weekday, .DatePicker .DayPicker-Day {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    margin: 4px;
+    line-height: 1.2;
+}
+
+.DatePicker .DayPicker-Day:active {
+    box-shadow: rgba(58, 151, 212, 0.28) 0px 0px 0px 4px;
+}

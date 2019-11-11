@@ -8,7 +8,8 @@ import RecordListItem from './contexts/recordListItem'
 export default class DateField extends React.Component {
 
     static propTypes = {
-        id: PropTypes.string.isRequired,
+        id: PropTypes.string,
+        title: PropTypes.string,
         contextId: PropTypes.oneOf(['recordDetail', 'recordGridRow', 'recordGalleryCard', 'recordListItem']),
         roleId: PropTypes.oneOf(['editor', 'readOnly']),
         date: PropTypes.string,
@@ -19,12 +20,19 @@ export default class DateField extends React.Component {
         datePlaceholder: PropTypes.string,
         timeFormat: PropTypes.string,
         timePlaceholder: PropTypes.string,
-        onChange: PropTypes.func
+        onChange: PropTypes.func,
+        locale: PropTypes.string,
+        mobile: PropTypes.bool
+    }
+
+    static defaultProps = {
+        title: 'Unnamed Date Field',
+        mobile: window.outerWidth > 768 === false
     }
 
     render() {
 
-        const {contextId, roleId} = this.props
+        const { contextId, roleId } = this.props
 
 
         if (contextId === 'recordDetail' && roleId === 'editor') {
