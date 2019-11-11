@@ -7,7 +7,7 @@ import AdaptiveDialog from '../../AdaptiveDialog'
 
 const noop = () => { }
 
-class Dialog extends React.Component {
+class DateFieldDialog extends React.Component {
 
     render() {
 
@@ -39,11 +39,23 @@ class Dialog extends React.Component {
                 >
                     <DatePicker
                         {...this.props}
+                        onChange={this.handleChange}
                     />
                 </div>
             </div>
 
         )
+    }
+
+    handleChange = (e) => {
+
+        if (this.props.onChange) {
+            this.props.onChange(e)
+        }
+
+        if (!this.props.mobile) {
+            this.props.onClose()
+        }
     }
 }
 
@@ -112,8 +124,6 @@ transition-duration: 0s;
             timeInputFocus: inputStyleFocus
         }
 
-        const { onDateInputRef, onTimeInputRef, date, datePlaceholder, timePlaceholder, dateFormat, timeFormat, includeTime, sameTimeZone } = this.props
-
         return (
             <div
                 ref={'button'}
@@ -145,16 +155,8 @@ transition-duration: 0s;
             >
                 <DateInput
                     styles={dateInputStyles}
-                    datePlaceholder={datePlaceholder}
-                    timePlaceholder={timePlaceholder}
-                    dateFormat={dateFormat}
-                    timeFormat={timeFormat}
-                    includeTime={includeTime}
-                    sameTimeZone={sameTimeZone}
-                    value={date}
-                    onDateInputRef={onDateInputRef}
-                    onTimeInputRef={onTimeInputRef}
-                    onChange={this.props.onChange}
+                    {...this.props}
+                    value={this.props.date}
                     onFocus={this.handleFocus}
                     onBlur={this.handleBlur}
                 />
@@ -167,12 +169,16 @@ transition-duration: 0s;
             focus: true,
             open: true
         })
-        this.props.onFocus(e)
+        if (this.props.onFocus) {
+            this.props.onFocus(e)
+        }
     }
 
     handleBlur = (e) => {
         this.setState({ focus: false })
-        this.props.onBlur(e)
+        if (this.props.onBlur) {
+            this.props.onBlur(e)
+        }
     }
 }
 
@@ -192,15 +198,32 @@ export default class DateField extends React.Component {
 
         return (
             <div
-                className={'DateField'}
+                className={cx(
+                    'DateField',
+                    css`
+                        position: relative;
+                    `
+                )}
             >
                 <DateTimeInput
                     ref={'button'}
                     {...this.props}
+                    onClick={this.handleClick}
                     onChange={this.handleChange}
                     onFocus={this.handleFocus}
-                    onBlur={this.handleBlur}
                 />
+                {this.props.mobile ? (
+                    <div
+                        className={css`
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        bottom: 0;
+                        right: 0;
+                    `}
+                        onClick={this.handleClick}
+                    />
+                ) : null}
                 {this.state.open ? (
                     <AdaptiveDialog
                         {...this.props}
@@ -209,7 +232,7 @@ export default class DateField extends React.Component {
                         popoverMaxWidth={320}
                         onDateInputRef={ref => this.dialogDateInputRef = ref}
                         onTimeInputRef={ref => this.dialogTimeInputRef = ref}
-                        component={Dialog}
+                        component={DateFieldDialog}
                         onChange={this.handleChange}
                         onClose={this.handleClose}
                     />
@@ -218,47 +241,25 @@ export default class DateField extends React.Component {
         )
     }
 
-    handleClose = () => {
+    handleFocus = () => {
 
-        this.setState({ open: false })
-    }
-
-    handleFocus = ({ input }) => {
-
-        let nextState = {
+        this.setState({
             focus: true
-        }
-
-        if (this.props.mobile || input === 'date') {
-            nextState.open = true
-        }
-
-        this.setState(nextState, () => {
-
-            if (this.props.mobile) {
-
-                if (input === 'date') {
-                    this.dialogDateInputRef.focus()
-                }
-
-                if (input === 'time') {
-                    this.dialogTimeInputRef.focus()
-                }
-            }
         })
     }
 
-    handleBlur = () => {
+    handleClick = ({ input }) => {
 
-        let nextState = {
-            focus: false
+        if (this.props.mobile || input === 'date') {
+
+            this.setState({
+                open: true
+            })
         }
+    }
 
-        if (!this.props.mobile) {
-            nextState.open = false
-        }
-
-        this.setState(nextState)
+    handleClose = () => {
+        this.setState({ open: false })
     }
 
     handleChange = ({ value }) => {
