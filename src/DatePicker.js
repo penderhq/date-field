@@ -3,8 +3,6 @@ import { css } from 'emotion'
 import PropTypes from 'prop-types'
 import DayPicker from 'react-day-picker';
 import MomentLocaleUtils from 'react-day-picker/moment'
-import 'react-day-picker/lib/style.css'
-import './style.css'
 import moment from 'moment'
 import arrowLeft from '@pndr/icons/lib/arrowLeft'
 import arrowRight from '@pndr/icons/lib/arrowRight'

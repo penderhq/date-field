@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import { render } from 'react-dom'
-import { css, injectGlobal } from 'emotion'
+import { injectGlobal } from 'emotion'
 import DateField from '../../src'
 import { Canvas, Heading, Paragraph, Box } from '@pndr/demo-utils'
-import moment from 'moment'
 import 'moment/locale/nl'
+import 'react-day-picker/lib/style.css'
+import '../../src/style.css'
 
 injectGlobal`
     * {
